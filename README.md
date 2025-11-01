@@ -1,4 +1,4 @@
-![](./images/aleo-workshop2.png)
+![](./docs/images/aleo-workshop2.png)
 
 # Compliant Private Tokens Workshop
 
