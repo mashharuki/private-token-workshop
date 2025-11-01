@@ -45,6 +45,56 @@
 
 このプログラムはすでにテストネットにデプロイされており、`token_template` Leoプロジェクトにリモートネットワーク依存関係として追加されています。これは純粋に参照用です。`workshop_ofac/`内の何かを編集/使用したり、`token_template/`の依存関係を編集したりする必要は**ありません**。
 
+# 環境構築
+
+VSCodeを立ち上げたら Reopen in DevContainerで開発環境用のコンテナを起動してください。
+
+コンテナがビルドされたら以下のコマンドを順番に実行して
+
+leo CLI と snarkOS CLIをインストールします。
+
+```bash
+# Leoのインストール
+echo "Installing Leo (this may take 10-20 minutes)..."
+cd /tmp
+if [ -d "leo" ]; then
+    rm -rf leo
+fi
+git clone --recurse-submodules https://github.com/ProvableHQ/leo
+cd leo
+# リンカーの設定を明示的に指定
+RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo install --path . || {
+    echo "Leo installation failed, trying without lld..."
+    cargo install --path .
+}
+cd /tmp
+rm -rf leo
+```
+
+```bash
+# SnarkOSのインストール
+echo "Installing SnarkOS (this may take 15-25 minutes)..."
+cd /tmp
+if [ -d "snarkOS" ]; then
+    rm -rf snarkOS
+fi
+git clone --branch mainnet --single-branch https://github.com/ProvableHQ/snarkOS.git
+cd snarkOS
+# リンカーの設定を明示的に指定
+RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo install --locked --path . || {
+    echo "SnarkOS installation failed with lld, trying default linker..."
+    cargo install --locked --path .
+}
+cd /tmp
+rm -rf snarkOS
+```
+
+インストール後に元のディレクトリに戻る
+
+```bash
+cd /workspaces/private-token-workshop 
+```
+
 # ビルド
 
 まず、提供されたテンプレートコードを埋めることで、Leoでトークンプログラムをビルドします。プログラムには以下が含まれます：
