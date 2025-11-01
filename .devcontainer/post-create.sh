@@ -20,29 +20,48 @@ rustup default stable
 # 必要な依存関係のインストール
 echo "Installing system dependencies..."
 sudo apt-get update
-sudo apt-get install -y build-essential pkg-config libssl-dev clang llvm
+sudo apt-get install -y \
+    build-essential \
+    pkg-config \
+    libssl-dev \
+    clang \
+    llvm \
+    lld \
+    gcc \
+    g++ \
+    binutils \
+    cmake \
+    git-all
 
 # Leoのインストール
-echo "Installing Leo..."
+echo "Installing Leo (this may take 10-20 minutes)..."
 cd /tmp
 if [ -d "leo" ]; then
     rm -rf leo
 fi
 git clone --recurse-submodules https://github.com/ProvableHQ/leo
 cd leo
-cargo install --path .
+# リンカーの設定を明示的に指定
+RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo install --path . || {
+    echo "Leo installation failed, trying without lld..."
+    cargo install --path .
+}
 cd /tmp
 rm -rf leo
 
 # SnarkOSのインストール
-echo "Installing SnarkOS..."
+echo "Installing SnarkOS (this may take 15-25 minutes)..."
 cd /tmp
 if [ -d "snarkOS" ]; then
     rm -rf snarkOS
 fi
 git clone --branch mainnet --single-branch https://github.com/ProvableHQ/snarkOS.git
 cd snarkOS
-cargo install --locked --path .
+# リンカーの設定を明示的に指定
+RUSTFLAGS="-C link-arg=-fuse-ld=lld" cargo install --locked --path . || {
+    echo "SnarkOS installation failed with lld, trying default linker..."
+    cargo install --locked --path .
+}
 cd /tmp
 rm -rf snarkOS
 
