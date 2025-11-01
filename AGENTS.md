@@ -108,3 +108,10 @@
 - 定期的に振り返りを行い、プロセスを改善
 - 新しいツールや手法を適切に評価して取り入れる
 - チームや将来の開発者のために知識を文書化
+
+
+## 参考になるGitHub
+- 以下は参考になるGitHubリポジトリのリストです。必要に応じてContext7で情報を取得してください
+    - AleoNet/workshop
+    - AleoNet/aleo-education
+    - howardwu/awesome-aleo
