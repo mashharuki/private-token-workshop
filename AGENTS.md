@@ -115,3 +115,4 @@
     - AleoNet/workshop
     - AleoNet/aleo-education
     - howardwu/awesome-aleo
+    - ProvableHQ/leo

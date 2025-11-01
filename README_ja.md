@@ -189,3 +189,5 @@ cd /workspaces/private-token-workshop
 
 ## 参考文献
 - [テストネット faucet サイト](https://faucet.aleo.org/)
+- [ブロックチェーンエクスプローラー](https://testnet.explorer.provable.com)
+- [Leo Playground](https://play.leo-lang.org/)
