@@ -49,6 +49,7 @@ leo test
 ```bash
 echo "NETWORK=testnet" > .env
 echo "PRIVATE_KEY=<あなたの秘密鍵>" >> .env
+ENDPOINT=https://api.explorer.provable.com/v1
 ```
 
 ### 2. テストネットクレジットの取得
@@ -60,6 +61,38 @@ echo "PRIVATE_KEY=<あなたの秘密鍵>" >> .env
 ```bash
 source .env
 leo deploy --network testnet
+```
+
+以下のようになればOK!
+
+```bash
+🛠️  Deployment Plan Summary
+──────────────────────────────────────────────
+🔧 Configuration:
+  Private Key:        APrivateKey1zkp2NJQ7JzR6...
+  Address:            aleo1yzxkqudh9at6jjh3d4f...
+  Endpoint:           https://api.explorer.provable.com/v1
+  Network:            testnet
+  Consensus Version:  11
+
+📦 Deployment Tasks:
+  • private_token_workshop.aleo  │ priority fee: 0  │ fee record: no (public fee)
+
+📊 Deployment Summary for private_token_workshop.aleo
+──────────────────────────────────────────────
+  Total Variables:      175,388
+  Total Constraints:    127,217
+  Max Variables:        2,097,152
+  Max Constraints:      2,097,152
+
+💰 Cost Breakdown (credits)
+  Transaction Storage:  4.287000
+  Program Synthesis:    0.302605
+  Namespace:            1.000000
+  Constructor:          0.002000
+  Priority Fee:         0.000000
+  Total Fee:            5.591605
+──────────────────────────────────────────────
 ```
 
 ## 📖 メソッド呼び出し方法
