@@ -186,3 +186,6 @@ cd /workspaces/private-token-workshop
 3. あなたのアドレスに追加で100トークンをプライベートにmintする
    
 4. それらのトークンを`<WORKSHOP_ADDRESS>`にプライベートに転送する
+
+## 参考文献
+- [テストネット faucet サイト](https://faucet.aleo.org/)
